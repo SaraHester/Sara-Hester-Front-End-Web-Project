@@ -102,8 +102,11 @@ INVENTORY = [
         picUrl: ''
     }
 ];
-function addToCart(number) {}
-function main() {
+function addToCart(number) {
+    INVENTORY[number].inStock -= 1;
+    draw();
+}
+function draw() {
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
         if (i == 0) {
@@ -117,12 +120,17 @@ function main() {
             INVENTORY[i].name +
             '<br>$' +
             INVENTORY[i].price +
-            '<br><button id="addToCart' +
+            '<br>' +
+            INVENTORY[i].inStock +
+            '<button id="addToCart' +
             i +
             '" onclick="addToCart(' +
             i +
             ')">Add to Cart</p></div>';
         $('#items').html(html);
     }
+}
+function main() {
+    draw();
 }
 $(main);
