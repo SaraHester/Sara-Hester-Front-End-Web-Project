@@ -112,13 +112,15 @@ function addToCart(number) {
 }
 function seeInfo(number) {
     console.log('seeInfo(' + number + ') has been clicked');
-    $('#items').html(
+    $('#data').html(
         '<button onclick="drawItems()">Back</button><p>' +
             INVENTORY[number].name +
-            '<br>' +
+            '<br>$' +
             INVENTORY[number].price +
-            '<br>' +
+            '<br>In Stock: ' +
             INVENTORY[number].inStock +
+            '<br>Description : ' +
+            INVENTORY[number].description +
             '</p>'
     );
 }
@@ -152,11 +154,27 @@ function drawItems() {
             i +
             ')">More info</button></div>';
 
-        $('#items').html(html);
+        $('#data').html(html);
         if (INVENTORY[i].inStock === 0) {
             $('#addToCart' + i).attr('disabled', 'true');
         }
     }
+}
+function showCart() {
+    total = 0;
+    html = '<button onclick="drawItems()">Back</button>';
+    for (i = 0; i < shoppingCart.length; i++) {
+        html +=
+            '<p>' +
+            shoppingCart[i].name +
+            '<br>' +
+            shoppingCart[i].price +
+            '<br>' +
+            shoppingCart[i].inStock +
+            '<br></p>';
+        total += shoppingCart[i].price;
+    }
+    $('#data').html(html + '<br>Total: ' + total);
 }
 function main() {
     drawItems();
