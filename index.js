@@ -108,9 +108,21 @@ function addToCart(number) {
     INVENTORY[number].inStock -= 1;
     shoppingCart.push(INVENTORY[number]);
     console.log(shoppingCart);
-    draw();
+    drawItems();
 }
-function draw() {
+function seeInfo(number) {
+    console.log('seeInfo(' + number + ') has been clicked');
+    $('#items').html(
+        '<button onclick="drawItems()">Back</button><p>' +
+            INVENTORY[number].name +
+            '<br>' +
+            INVENTORY[number].price +
+            '<br>' +
+            INVENTORY[number].inStock +
+            '</p>'
+    );
+}
+function drawItems() {
     $('#cart').html(
         '<i class="fa fa-shopping-cart" aria-hidden="true">' +
             shoppingCart.length
@@ -134,11 +146,19 @@ function draw() {
             i +
             '" onclick="addToCart(' +
             i +
-            ')">Add to Cart</p></div>';
+            ')">Add to Cart</p><button id="info' +
+            i +
+            '" onclick="seeInfo(' +
+            i +
+            ')">More info</button></div>';
+
         $('#items').html(html);
+        if (INVENTORY[i].inStock === 0) {
+            $('#addToCart' + i).attr('disabled', 'true');
+        }
     }
 }
 function main() {
-    draw();
+    drawItems();
 }
 $(main);
