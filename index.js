@@ -1,22 +1,106 @@
 INVENTORY = [
-    { name: 'Sword Art Online', price: 20 },
-    { name: 'Sword Art Online: season 2', price: 20 },
-    { name: 'Tokyo Ghoul', price: 20 },
-    { name: 'Tokyo Ghoul: root A', price: 20 },
-    { name: 'Attack On Titan', price: 20 },
-    { name: 'Dragon Ball', price: 20 },
-    { name: 'Dragon Ball Z', price: 20 },
-    { name: 'Dragon Ball Super', price: 20 },
-    { name: 'Dragon Ball GT', price: 20 },
-    { name: 'Naruto', price: 20 },
-    { name: 'Naruto Shippuden', price: 20 },
-    { name: 'One Piece', price: 20 },
-    { name: 'Death Note', price: 20 },
-    { name: 'Kill la Kill', price: 20 },
-    { name: 'Akame ga Kill', price: 20 },
-    { name: 'Hunter X Hunter', price: 20 },
-    { name: 'Bleach', price: 20 },
-    { name: 'My Hero Academia', price: 20 }
+    {
+        name: 'Sword Art Online',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Sword Art Online: season 2',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Tokyo Ghoul',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Tokyo Ghoul: root A',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Attack On Titan',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Dragon Ball',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Dragon Ball Z',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Dragon Ball Super',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Dragon Ball GT',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    { name: 'Naruto', price: 20, inStock: 20, description: '', picUrl: '' },
+    {
+        name: 'Naruto Shippuden',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    { name: 'One Piece', price: 20, inStock: 20, description: '', picUrl: '' },
+    { name: 'Death Note', price: 20, inStock: 20, description: '', picUrl: '' },
+    {
+        name: 'Kill la Kill',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Akame ga Kill',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    {
+        name: 'Hunter X Hunter',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    },
+    { name: 'Bleach', price: 20, inStock: 20, description: '', picUrl: '' },
+    {
+        name: 'My Hero Academia',
+        price: 20,
+        inStock: 20,
+        description: '',
+        picUrl: ''
+    }
 ];
 function addToCart(number) {}
 function main() {
