@@ -19,9 +19,10 @@ INVENTORY = [
     { name: 'My Hero Academia', price: 20 }
 ];
 function main() {
-    $('#game-over').html(
-        'Game Over <i class="fa fa-gamepad" aria-hidden="true"></i>'
-    );
+    for (i = 0; i < INVENTORY.length; i++) {
+        $('#items').append(
+            '<p>' + INVENTORY[i].name + '<br>' + INVENTORY[i].price + '</p><br>'
+        );
+    }
 }
-
 $(main);
