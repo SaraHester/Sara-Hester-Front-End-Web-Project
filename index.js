@@ -102,11 +102,19 @@ INVENTORY = [
         picUrl: ''
     }
 ];
+shoppingCart = [];
+
 function addToCart(number) {
     INVENTORY[number].inStock -= 1;
+    shoppingCart.push(INVENTORY[number]);
+    console.log(shoppingCart);
     draw();
 }
 function draw() {
+    $('#cart').html(
+        '<i class="fa fa-shopping-cart" aria-hidden="true">' +
+            shoppingCart.length
+    );
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
         if (i == 0) {
