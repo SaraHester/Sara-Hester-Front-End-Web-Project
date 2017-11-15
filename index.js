@@ -19,10 +19,21 @@ INVENTORY = [
     { name: 'My Hero Academia', price: 20 }
 ];
 function main() {
+    html = '';
     for (i = 0; i < INVENTORY.length; i++) {
-        $('#items').append(
-            '<p>' + INVENTORY[i].name + '<br>' + INVENTORY[i].price + '</p><br>'
-        );
+        if (i == 0) {
+            html += '<div class="row">';
+        }
+        if (i % 3 == 0) {
+            html += '</div><div class="row">';
+        }
+        html +=
+            '<div class="col-sm-4"><p>' +
+            INVENTORY[i].name +
+            '<br>' +
+            INVENTORY[i].price +
+            '</p></div>';
+        $('#items').html(html);
     }
 }
 $(main);
