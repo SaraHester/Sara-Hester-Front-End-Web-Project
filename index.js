@@ -18,6 +18,7 @@ INVENTORY = [
     { name: 'Bleach', price: 20 },
     { name: 'My Hero Academia', price: 20 }
 ];
+function addToCart(number) {}
 function main() {
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
@@ -30,9 +31,13 @@ function main() {
         html +=
             '<div class="col-sm-4"><p>' +
             INVENTORY[i].name +
-            '<br>' +
+            '<br>$' +
             INVENTORY[i].price +
-            '</p></div>';
+            '<br><button id="addToCart' +
+            i +
+            '" onclick="addToCart(' +
+            i +
+            ')">Add to Cart</p></div>';
         $('#items').html(html);
     }
 }
