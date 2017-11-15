@@ -26,10 +26,22 @@
             </ul>
         </div>
     </nav>
-    <h1>Welcome
+    <center>
+        <h1>Welcome
 
-    </h1>
-    <div id="data"></div>
+        </h1>
+        <button onclick='showSellForm()' id='showSellForm'>Add item to sell <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div id="data"></div>
+        <p><input type='text' id="itemName" placeholder="Name" hidden></p>
+        <p><input type='text' id="itemPrice" placeholder="Price" hidden></p>
+        <p><input id='itemUrl' type='url' placeholder="URl to picture" hidden></p>
+        <p><textarea id='itemDescription' placeholder='Description' hidden></textarea></p>
+        <p><input id='itemQuantity' type='number' placeholder="Quantity" hidden></p>
+        <button id='addSellItem' hidden>Sell</button>
+
+
+
+    </center>
     <script src="vendor/jquery.js"></script>
     <script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <script src="index.js"></script>

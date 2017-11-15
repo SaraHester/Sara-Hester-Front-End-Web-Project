@@ -176,6 +176,34 @@ function showCart() {
     }
     $('#data').html(html + '<br>Total: ' + total);
 }
+function showSellForm() {
+    console.log($('#showSellForm').css('color'));
+    if ($('#showSellForm').css('color') === 'rgb(0, 0, 0)') {
+        $('#showSellForm').html(
+            'Cancel <i class="fa fa-minus" aria-hidden="true"></i>'
+        );
+        $('#showSellForm').css('color', 'red');
+        $('#data').html('');
+        $('#itemName').removeAttr('hidden');
+        $('#itemPrice').removeAttr('hidden');
+        $('#itemUrl').removeAttr('hidden');
+        $('#itemDescription').removeAttr('hidden');
+        $('#itemQuantity').removeAttr('hidden');
+        $('#addSellItem').removeAttr('hidden');
+    } else if ($('#showSellForm').css('color') === 'rgb(255, 0, 0)') {
+        $('#showSellForm').html(
+            'Add item to sell <i class="fa fa-plus" aria-hidden="true"></i>'
+        );
+        console.log($('#showSellForm').css('color', 'black'));
+        $('#itemName').attr('hidden', 'true');
+        $('#itemPrice').attr('hidden', 'true');
+        $('#itemUrl').attr('hidden', 'true');
+        $('#itemDescription').attr('hidden', 'true');
+        $('#itemQuantity').attr('hidden', 'true');
+        $('#addSellItem').attr('hidden', 'true');
+        drawItems();
+    }
+}
 function main() {
     drawItems();
 }
