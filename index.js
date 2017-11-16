@@ -145,6 +145,8 @@ INVENTORY = [
     }
 ];
 shoppingCart = [];
+errors = [];
+errorMessage = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>';
 validations = {
     name: false,
     price: false,
@@ -154,6 +156,12 @@ validations = {
     quantity: false
 };
 function enableButton() {
+    if (errors.length >= 1) {
+        $('#errors').html(errorMessage + errors[0]);
+    } else {
+        $('#errors').html('');
+    }
+    console.log(errors.length);
     if (
         validations.name === true &&
         validations.price === true &&
@@ -309,49 +317,76 @@ function sell() {
 $('#itemName').on('input', function(event) {
     var name = event.currentTarget.value;
     console.log($('#itemName').val());
-    if (name == undefined) {
-        $('#errors').append(
-            '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Name is empty'
-        );
+    if (name === '') {
+        errors.push(' Name is blank');
     } else {
-        validations.name = true;
+        if (errors.includes(' Name is blank')) {
+            errors.splice(errors.indexOf(' Name is blank'), 1);
+            validations.name = true;
+        }
     }
+
     enableButton();
 });
 $('#itemPrice').on('input', function(event) {
     var price = event.currentTarget.value;
-    if (price != undefined) {
-        validations.price = true;
-        enableButton();
+    if (price === '') {
+        errors.push(' Price is blank');
+    } else {
+        if (errors.includes(' Price is blank')) {
+            errors.splice(errors.indexOf(' Price is blank'));
+            validations.price = true;
+        }
     }
+    enableButton();
 });
 $('#itemSeller').on('input', function(event) {
     var seller = event.currentTarget.value;
-    if ($('#itemSeller').val() != undefined) {
-        validations.seller = true;
-        enableButton();
+    if (seller === '') {
+        errors.push(' Seller is blank');
+    } else {
+        if (errors.includes(' Seller is blank')) {
+            errors.splice(errors.indexOf(' Seller is blank'));
+            validations.seller = true;
+        }
     }
+    enableButton();
 });
 $('#itemUrl').on('input', function(event) {
     var url = event.currentTarget.value;
-    if (url != undefined) {
-        validations.url = true;
-        enableButton();
+    if (url === '') {
+        errors.push(' Url is invalid');
+    } else {
+        if (errors.includes(' Url is invalid')) {
+            errors.splice(errors.indexOf(' Url is invalid'));
+            validations.url = true;
+        }
     }
+    enableButton();
 });
 $('#itemDescription').on('input', function(event) {
     var description = event.currentTarget.value;
-    if (description != undefined) {
-        validations.description = true;
-        enableButton();
+    if (description === '') {
+        errors.push(' Description is blank');
+    } else {
+        if (errors.includes(' Description is blank')) {
+            errors.splice(errors.indexOf(' Description is blank'));
+            validations.description = true;
+        }
     }
+    enableButton();
 });
 $('#itemQuantity').on('input', function(event) {
     var quantity = event.currentTarget.value;
-    if (quantity != undefined) {
-        validations.quantity = true;
-        enableButton();
+    if (quantity === '') {
+        errors.push(' Quantity is invalid');
+    } else {
+        if (errors.includes(' Quantity is invalid')) {
+            errors.splice(errors.indexOf(' Quantity is invalid'));
+            validations.quantity = true;
+        }
     }
+    enableButton();
 });
 
 function main() {
