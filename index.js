@@ -145,7 +145,64 @@ INVENTORY = [
     }
 ];
 shoppingCart = [];
-
+validations = {
+    name: false,
+    price: false,
+    seller: false,
+    url: false,
+    description: false,
+    quantity: false
+};
+function enableButton() {
+    if (
+        validations.name === true &&
+        validations.price === true &&
+        validations.seller === true &&
+        validations.url === true &&
+        validations.description === true &&
+        validations.quantity === true
+    ) {
+        $('#addSellItem').attr('disabled', false);
+    } else {
+        $('#addSellItem').attr('disabled', true);
+    }
+}
+function checkName() {
+    if ($('#itemName').val() != undefined) {
+        validations.name = true;
+        enableButton();
+    }
+}
+function checkPrice() {
+    if ($('#itemPrice').val() != undefined) {
+        validations.price = true;
+        enableButton();
+    }
+}
+function checkSeller() {
+    if ($('#itemSeller').val() != undefined) {
+        validations.seller = true;
+        enableButton();
+    }
+}
+function checkUrl() {
+    if ($('#itemUrl').val() != undefined) {
+        validations.url = true;
+        enableButton();
+    }
+}
+function checkDescription() {
+    if ($('#itemDescription').val() != undefined) {
+        validations.description = true;
+        enableButton();
+    }
+}
+function checkQuantity() {
+    if ($('#itemQuantity').val() != undefined) {
+        validations.quantity = true;
+        enableButton();
+    }
+}
 function addToCart(number) {
     INVENTORY[number].inStock -= 1;
     shoppingCart.push(INVENTORY[number]);
@@ -271,21 +328,6 @@ function toggleSellForm() {
     }
 }
 function sell() {
-    // sellers = [];
-    // names = [];
-    // for (i = 0; i < INVENTORY.length; i++) {
-    //     sellers.push(INVENTORY[i].seller);
-    //     names.push(INVENTORY[i].name);
-    // }
-    // if (names.indexOf($('#itemName').val()) > -1) {
-    //     if (sellers.indexOf($('#itemSeller').val()) > -1) {
-    //         console.log('Name and seller matches');
-    //     } else {
-    //         console.log('Name matches but seller does not match');
-    //     }
-    // } else {
-    //     console.log('Name does not match');
-    // }
     item = {
         name: $('#itemName').val(),
         price: $('#itemPrice').val(),
@@ -298,7 +340,17 @@ function sell() {
     hideSellForm();
     drawItems();
 }
+function attachHandlers() {
+    $('#itemName').on('input', checkName());
+    $('#itemPrice').on('input', checkPrice());
+    $('#itemSeller').on('input', checkSeller());
+    $('#itemUrl').on('input', checkUrl());
+    $('#itemDescription').on('input', checkDescription());
+    $('#itemQuantity').on('input', checkQuantity());
+}
 function main() {
+    attachHandlers();
     drawItems();
 }
+
 $(main);
