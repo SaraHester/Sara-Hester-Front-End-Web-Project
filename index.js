@@ -52,7 +52,8 @@ INVENTORY = [
         price: 20,
         inStock: 20,
         description: '',
-        picUrl: '',
+        picUrl:
+            'http://www.gstatic.com/tv/thumb/tvbanners/10420628/p10420628_b_v8_aa.jpg',
         seller: 'Anime World'
     },
     {
@@ -156,11 +157,6 @@ validations = {
     quantity: false
 };
 function enableButton() {
-    if (errors.length >= 1) {
-        $('#errors').html(errorMessage + errors[0]);
-    } else {
-        $('#errors').html('');
-    }
     console.log(errors.length);
     if (
         validations.name === true &&
@@ -173,6 +169,11 @@ function enableButton() {
         $('#addSellItem').attr('disabled', false);
     } else {
         $('#addSellItem').attr('disabled', true);
+    }
+    if (errors.length >= 1) {
+        $('#errors').html(errorMessage + errors[0]);
+    } else {
+        $('#errors').html('');
     }
 }
 
@@ -253,7 +254,9 @@ function drawItems() {
             html += '</div><div class="row">';
         }
         html +=
-            '<div class="col-sm-4"><p>' +
+            '<div class="col-sm-4"><div class="photo"><img src="' +
+            INVENTORY[i].picUrl +
+            '"></div><p>' +
             INVENTORY[i].name +
             '<br>$' +
             INVENTORY[i].price +
