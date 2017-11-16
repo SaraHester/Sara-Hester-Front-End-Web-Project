@@ -240,7 +240,9 @@ function seeInfo(number) {
     console.log('seeInfo(' + number + ') has been clicked');
     $('#toggleSellForm').hide();
     $('#data').html(
-        '<button onclick="back()">Back</button><p>' +
+        '<button onclick="back()">Back</button><p><div class="bigphoto"><img src="' +
+            INVENTORY[number].picUrl +
+            '"></div><p>' +
             INVENTORY[number].name +
             '<br>$' +
             INVENTORY[number].price +
@@ -292,17 +294,20 @@ function drawItems() {
     }
 }
 function showCart() {
+    $('#toggleSellForm').hide();
     total = 0;
-    html = '<button onclick="drawItems()">Back</button>';
+    html = '<button onclick="back()">Back</button>';
     for (i = 0; i < shoppingCart.length; i++) {
         html +=
-            '<p>' +
+            '<hr><div class="cart-item"><div class="photo"><img src="' +
+            shoppingCart[i].picUrl +
+            '"></div><p>' +
             shoppingCart[i].name +
-            '<br>' +
+            '<br>$' +
             shoppingCart[i].price +
-            '<br>' +
+            '<br>In Stock: ' +
             shoppingCart[i].inStock +
-            '<br></p>';
+            '<br></p></div>';
         total += parseFloat(shoppingCart[i].price);
     }
     $('#data').html(html + '<br>Total: ' + total);
