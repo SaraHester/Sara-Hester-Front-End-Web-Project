@@ -30,14 +30,15 @@
         <h1>Welcome
 
         </h1>
-        <button onclick='showSellForm()' id='showSellForm'>Add item to sell <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <button onclick='toggleSellForm()' id='toggleSellForm'>Add item to sell <i class="fa fa-plus" aria-hidden="true"></i></button>
         <div id="data"></div>
         <p><input type='text' id="itemName" placeholder="Name" hidden></p>
         <p><input type='text' id="itemPrice" placeholder="Price" hidden></p>
+        <p><input type='text' id='itemSeller' placeholder='Seller Name' hidden></p>
         <p><input id='itemUrl' type='url' placeholder="URl to picture" hidden></p>
         <p><textarea id='itemDescription' placeholder='Description' hidden></textarea></p>
         <p><input id='itemQuantity' type='number' placeholder="Quantity" hidden></p>
-        <button id='addSellItem' hidden>Sell</button>
+        <button id='addSellItem' onclick="sell()" hidden>Sell</button>
 
 
 
