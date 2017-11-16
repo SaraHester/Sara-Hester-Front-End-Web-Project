@@ -262,6 +262,11 @@ function drawItems() {
     );
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
+        if (INVENTORY[i].inStock === 0) {
+            classes = 'photo soldout';
+        } else {
+            classes = 'photo';
+        }
         if (i == 0) {
             html += '<div class="row">';
         }
@@ -269,7 +274,9 @@ function drawItems() {
             html += '</div><div class="row">';
         }
         html +=
-            '<div class="col-sm-4"><div class="photo"><img src="' +
+            '<div class="col-sm-4"><div class="' +
+            classes +
+            '"><img src="' +
             INVENTORY[i].picUrl +
             '"></div><p>' +
             INVENTORY[i].name +
@@ -287,11 +294,11 @@ function drawItems() {
             i +
             ')">More info</button></div>';
 
-        $('#data').html(html);
         if (INVENTORY[i].inStock === 0) {
             $('#addToCart' + i).attr('disabled', 'true');
         }
     }
+    $('#data').html(html);
 }
 function showCart() {
     $('#toggleSellForm').hide();
