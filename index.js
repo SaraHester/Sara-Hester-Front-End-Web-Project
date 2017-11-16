@@ -157,13 +157,27 @@ function hideSellForm() {
         'Add item to sell <i class="fa fa-plus" aria-hidden="true"></i>'
     );
     $('#toggleSellForm').css('color', 'black');
-    $('#itemName').attr('hidden', 'true');
-    $('#itemPrice').attr('hidden', 'true');
-    $('#itemUrl').attr('hidden', 'true');
-    $('#itemDescription').attr('hidden', 'true');
-    $('#itemQuantity').attr('hidden', 'true');
-    $('#addSellItem').attr('hidden', 'true');
-    $('#itemSeller').attr('hidden', 'true');
+    $('#itemName')
+        .attr('hidden', 'true')
+        .val('');
+    $('#itemPrice')
+        .attr('hidden', 'true')
+        .val('');
+    $('#itemUrl')
+        .attr('hidden', 'true')
+        .val('');
+    $('#itemDescription')
+        .attr('hidden', 'true')
+        .val('');
+    $('#itemQuantity')
+        .attr('hidden', 'true')
+        .val('');
+    $('#addSellItem')
+        .attr('hidden', 'true')
+        .val('');
+    $('#itemSeller')
+        .attr('hidden', 'true')
+        .val('');
 }
 function showSellForm() {
     $('#toggleSellForm').html(
@@ -243,7 +257,7 @@ function showCart() {
             '<br>' +
             shoppingCart[i].inStock +
             '<br></p>';
-        total += shoppingCart[i].price;
+        total += parseFloat(shoppingCart[i].price);
     }
     $('#data').html(html + '<br>Total: ' + total);
 }
