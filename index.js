@@ -167,42 +167,7 @@ function enableButton() {
         $('#addSellItem').attr('disabled', true);
     }
 }
-function checkName() {
-    if ($('#itemName').val() != undefined) {
-        validations.name = true;
-        enableButton();
-    }
-}
-function checkPrice() {
-    if ($('#itemPrice').val() != undefined) {
-        validations.price = true;
-        enableButton();
-    }
-}
-function checkSeller() {
-    if ($('#itemSeller').val() != undefined) {
-        validations.seller = true;
-        enableButton();
-    }
-}
-function checkUrl() {
-    if ($('#itemUrl').val() != undefined) {
-        validations.url = true;
-        enableButton();
-    }
-}
-function checkDescription() {
-    if ($('#itemDescription').val() != undefined) {
-        validations.description = true;
-        enableButton();
-    }
-}
-function checkQuantity() {
-    if ($('#itemQuantity').val() != undefined) {
-        validations.quantity = true;
-        enableButton();
-    }
-}
+
 function addToCart(number) {
     INVENTORY[number].inStock -= 1;
     shoppingCart.push(INVENTORY[number]);
@@ -340,16 +305,57 @@ function sell() {
     hideSellForm();
     drawItems();
 }
-function attachHandlers() {
-    $('#itemName').on('input', checkName());
-    $('#itemPrice').on('input', checkPrice());
-    $('#itemSeller').on('input', checkSeller());
-    $('#itemUrl').on('input', checkUrl());
-    $('#itemDescription').on('input', checkDescription());
-    $('#itemQuantity').on('input', checkQuantity());
-}
+
+$('#itemName').on('input', function(event) {
+    var name = event.currentTarget.value;
+    console.log($('#itemName').val());
+    if (name == undefined) {
+        $('#errors').append(
+            '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Name is empty'
+        );
+    } else {
+        validations.name = true;
+    }
+    enableButton();
+});
+$('#itemPrice').on('input', function(event) {
+    var price = event.currentTarget.value;
+    if (price != undefined) {
+        validations.price = true;
+        enableButton();
+    }
+});
+$('#itemSeller').on('input', function(event) {
+    var seller = event.currentTarget.value;
+    if ($('#itemSeller').val() != undefined) {
+        validations.seller = true;
+        enableButton();
+    }
+});
+$('#itemUrl').on('input', function(event) {
+    var url = event.currentTarget.value;
+    if (url != undefined) {
+        validations.url = true;
+        enableButton();
+    }
+});
+$('#itemDescription').on('input', function(event) {
+    var description = event.currentTarget.value;
+    if (description != undefined) {
+        validations.description = true;
+        enableButton();
+    }
+});
+$('#itemQuantity').on('input', function(event) {
+    var quantity = event.currentTarget.value;
+    if (quantity != undefined) {
+        validations.quantity = true;
+        enableButton();
+    }
+});
+
 function main() {
-    attachHandlers();
+    // attachHandlers();
     drawItems();
 }
 
