@@ -166,7 +166,7 @@ function enableButton() {
         validations.description === true &&
         validations.quantity === true
     ) {
-        $('#addSellItem').attr('disabled', false);
+        $('#addSellItem').removeAttr('disabled');
     } else {
         $('#addSellItem').attr('disabled', true);
     }
@@ -322,11 +322,12 @@ $('#itemName').on('input', function(event) {
     console.log($('#itemName').val());
     if (name === '') {
         errors.push(' Name is blank');
+        validations.name = false;
     } else {
         if (errors.includes(' Name is blank')) {
             errors.splice(errors.indexOf(' Name is blank'), 1);
-            validations.name = true;
         }
+        validations.name = true;
     }
 
     enableButton();
@@ -335,11 +336,12 @@ $('#itemPrice').on('input', function(event) {
     var price = event.currentTarget.value;
     if (price === '') {
         errors.push(' Price is blank');
+        validations.price = false;
     } else {
         if (errors.includes(' Price is blank')) {
             errors.splice(errors.indexOf(' Price is blank'));
-            validations.price = true;
         }
+        validations.price = true;
     }
     enableButton();
 });
@@ -347,11 +349,12 @@ $('#itemSeller').on('input', function(event) {
     var seller = event.currentTarget.value;
     if (seller === '') {
         errors.push(' Seller is blank');
+        validations.seller = false;
     } else {
         if (errors.includes(' Seller is blank')) {
             errors.splice(errors.indexOf(' Seller is blank'));
-            validations.seller = true;
         }
+        validations.seller = true;
     }
     enableButton();
 });
@@ -359,11 +362,12 @@ $('#itemUrl').on('input', function(event) {
     var url = event.currentTarget.value;
     if (url === '') {
         errors.push(' Url is invalid');
+        validations.url = false;
     } else {
         if (errors.includes(' Url is invalid')) {
             errors.splice(errors.indexOf(' Url is invalid'));
-            validations.url = true;
         }
+        validations.url = true;
     }
     enableButton();
 });
@@ -371,11 +375,12 @@ $('#itemDescription').on('input', function(event) {
     var description = event.currentTarget.value;
     if (description === '') {
         errors.push(' Description is blank');
+        validations.description = false;
     } else {
         if (errors.includes(' Description is blank')) {
             errors.splice(errors.indexOf(' Description is blank'));
-            validations.description = true;
         }
+        validations.description = true;
     }
     enableButton();
 });
@@ -383,11 +388,12 @@ $('#itemQuantity').on('input', function(event) {
     var quantity = event.currentTarget.value;
     if (quantity === '') {
         errors.push(' Quantity is invalid');
+        validations.quantity = false;
     } else {
         if (errors.includes(' Quantity is invalid')) {
             errors.splice(errors.indexOf(' Quantity is invalid'));
-            validations.quantity = true;
         }
+        validations.quantity = true;
     }
     enableButton();
 });
