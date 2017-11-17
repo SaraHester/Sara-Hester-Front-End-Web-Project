@@ -356,8 +356,16 @@ function showCart() {
     total = 0;
     html = '<button onclick="back()">Back</button>';
     for (i = 0; i < shoppingCart.length; i++) {
+        if (shoppingCart[i].inStock === 0) {
+            classes =
+                ' soldout"><img id="toplayer" src="http://www.pngall.com/wp-content/uploads/2016/06/Sold-Out-PNG-HD.png"><img id="bottomlayer" src="';
+            addTo = 'disabled';
+        } else {
+            classes = '"><img src="';
+        }
         html +=
-            '<hr><div class="cart-item"><div class="photo"><img src="' +
+            '<hr><div class="cart-item"><div class="photo' +
+            classes +
             shoppingCart[i].picUrl +
             '"></div><p>' +
             shoppingCart[i].name +
