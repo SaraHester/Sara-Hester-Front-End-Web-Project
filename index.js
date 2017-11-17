@@ -304,10 +304,11 @@ function drawItems() {
             remove = '';
         }
         if (INVENTORY[i].inStock === 0) {
-            classes = 'photo soldout';
+            classes =
+                ' soldout"><img id="toplayer" src="http://www.pngall.com/wp-content/uploads/2016/06/Sold-Out-PNG-HD.png"><img id="bottomlayer" src="';
             addTo = 'disabled';
         } else {
-            classes = 'photo';
+            classes = '"><img src="';
         }
         if (i == 0) {
             html += '<div class="row">';
@@ -316,9 +317,8 @@ function drawItems() {
             html += '</div><div class="row">';
         }
         html +=
-            '<div class="col-sm-4"><div class="' +
+            '<div class="col-sm-4"><div class="photo' +
             classes +
-            '"><img src="' +
             INVENTORY[i].picUrl +
             '"></div><p>' +
             INVENTORY[i].name +
