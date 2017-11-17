@@ -189,12 +189,10 @@ function addToCart(number) {
     INVENTORY[number].inStock -= 1;
     shoppingCart.push(INVENTORY[number]);
     console.log(shoppingCart);
-    drawItems();
 }
 function removeFromCart(number) {
     INVENTORY[number].inStock += 1;
     shoppingCart.splice(shoppingCart.indexOf(INVENTORY[number]), 1);
-    drawItems();
 }
 function hideSellForm() {
     $('#toggleSellForm').html(
@@ -242,10 +240,27 @@ function back() {
     $('#toggleSellForm').show();
 }
 function seeInfo(number) {
+    $('#cart').html(
+        '<i class="fa fa-shopping-cart" aria-hidden="true">' +
+            shoppingCart.length
+    );
+    addTo = '';
+    remove = 'disabled';
+    if (shoppingCart.includes(INVENTORY[number])) {
+        remove = '';
+    }
+    if (INVENTORY[number].inStock === 0) {
+        classes = 'bigphoto soldout';
+        addTo = 'disabled';
+    } else {
+        classes = 'bigphoto';
+    }
     console.log('seeInfo(' + number + ') has been clicked');
     $('#toggleSellForm').hide();
     $('#data').html(
-        '<button onclick="back()">Back</button><p><div class="bigphoto"><img src="' +
+        '<div class="row"><div class="col-sm-5"><button onclick="back()">Back</button><p><div class="' +
+            classes +
+            '"><img src="' +
             INVENTORY[number].picUrl +
             '"></div><p>' +
             INVENTORY[number].name +
@@ -257,7 +272,23 @@ function seeInfo(number) {
             INVENTORY[number].inStock +
             '<br>Description : ' +
             INVENTORY[number].description +
-            '</p>'
+            '</p></div><div class="col-sm-3"><button id="addToCart' +
+            number +
+            '" onclick="addToCart(' +
+            number +
+            '); seeInfo(' +
+            number +
+            ');" ' +
+            addTo +
+            '>Add to Cart<button id="removeFromCart' +
+            number +
+            '" onclick="removeFromCart(' +
+            number +
+            '); seeInfo(' +
+            number +
+            ');"' +
+            remove +
+            '>Remove from cart</button></div></div>'
     );
 }
 function drawItems() {
@@ -299,13 +330,13 @@ function drawItems() {
             i +
             '" onclick="addToCart(' +
             i +
-            ')" ' +
+            '); drawItems();" ' +
             addTo +
             '>Add to Cart<button id="removeFromCart' +
             i +
             '" onclick="removeFromCart(' +
             i +
-            ')"' +
+            '); drawItems();"' +
             remove +
             '>Remove from cart</button><button id="info' +
             i +
