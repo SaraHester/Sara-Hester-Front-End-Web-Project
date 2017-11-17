@@ -262,8 +262,10 @@ function drawItems() {
     );
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
+        disabled = '';
         if (INVENTORY[i].inStock === 0) {
             classes = 'photo soldout';
+            disabled = 'disabled';
         } else {
             classes = 'photo';
         }
@@ -288,15 +290,14 @@ function drawItems() {
             i +
             '" onclick="addToCart(' +
             i +
-            ')">Add to Cart</p><button id="info' +
+            ')" ' +
+            disabled +
+            '>Add to Cart<button id="info' +
             i +
             '" onclick="seeInfo(' +
             i +
-            ')">More info</button></div>';
-
-        if (INVENTORY[i].inStock === 0) {
-            $('#addToCart' + i).attr('disabled', 'true');
-        }
+            ')">More info</button></div></p>';
+        console.log(disabled);
     }
     $('#data').html(html);
 }
