@@ -191,6 +191,11 @@ function addToCart(number) {
     console.log(shoppingCart);
     drawItems();
 }
+function removeFromCart(number) {
+    INVENTORY[number].inStock += 1;
+    shoppingCart.splice(INVENTORY[number], 1);
+    drawItems();
+}
 function hideSellForm() {
     $('#toggleSellForm').html(
         'Add item to sell <i class="fa fa-plus" aria-hidden="true"></i>'
@@ -262,10 +267,11 @@ function drawItems() {
     );
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
-        disabled = '';
+        addTo = '';
+        remove = '';
         if (INVENTORY[i].inStock === 0) {
             classes = 'photo soldout';
-            disabled = 'disabled';
+            addTo = 'disabled';
         } else {
             classes = 'photo';
         }
@@ -291,13 +297,16 @@ function drawItems() {
             '" onclick="addToCart(' +
             i +
             ')" ' +
-            disabled +
-            '>Add to Cart<button id="info' +
+            addTo +
+            '>Add to Cart<button id="removeFromCart' +
+            i +
+            '" onclick="removeFromCart(' +
+            i +
+            ')">Remove from cart</button><button id="info' +
             i +
             '" onclick="seeInfo(' +
             i +
             ')">More info</button></div></p>';
-        console.log(disabled);
     }
     $('#data').html(html);
 }
