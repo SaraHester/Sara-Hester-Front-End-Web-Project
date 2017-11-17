@@ -2,7 +2,14 @@
     padding-left: 50px;
 }
 button {
+    border-radius: 5px;
+    border-style: outset;
     color: black;
+    background-color: #757575;
+}
+button[disabled] {
+    border-style: inset;
+    background-color: #353535;
 }
 .photo img {
     /* position: absolute; */
@@ -10,10 +17,32 @@ button {
     width: 200px;
 }
 .bigphoto img {
+    /* position: absolute; */
+    /* right: 400px; */
     width: 225px;
+    height: 318px;
+}
+.bigphoto {
+    overflow: hidden;
     height: 318px;
 }
 .soldout img {
     border: 5px double #ff0000;
     /* border-color: red; */
+}
+.container {
+    width: 225px;
+    position: relative;
+}
+#toplayer {
+    position: absolute;
+    z-index: 3;
+}
+#bottomlayer {
+    /* position: absolute; */
+    z-index: 1;
+}
+#toplayer,
+p {
+    display: inline;
 }

@@ -250,19 +250,19 @@ function seeInfo(number) {
         remove = '';
     }
     if (INVENTORY[number].inStock === 0) {
-        classes = 'bigphoto soldout';
+        classes =
+            ' soldout"><center><img id="toplayer" src="http://www.pngall.com/wp-content/uploads/2016/06/Sold-Out-PNG-HD.png"><img id="bottomlayer" src="';
         addTo = 'disabled';
     } else {
-        classes = 'bigphoto';
+        classes = '"><center><img src="';
     }
     console.log('seeInfo(' + number + ') has been clicked');
     $('#toggleSellForm').hide();
     $('#data').html(
-        '<div class="row"><div class="col-sm-5"><button onclick="back()">Back</button><p><div class="' +
+        '<div class="row"><button onclick="back()">Back</button></div><p><div class=" row bigphoto' +
             classes +
-            '"><img src="' +
             INVENTORY[number].picUrl +
-            '"></div><p>' +
+            '"></center></div><div class="row"><p>' +
             INVENTORY[number].name +
             '<br>$' +
             INVENTORY[number].price +
@@ -272,7 +272,7 @@ function seeInfo(number) {
             INVENTORY[number].inStock +
             '<br>Description : ' +
             INVENTORY[number].description +
-            '</p></div><div class="col-sm-3"><button id="addToCart' +
+            '</p><br><button id="addToCart' +
             number +
             '" onclick="addToCart(' +
             number +
@@ -324,9 +324,9 @@ function drawItems() {
             INVENTORY[i].name +
             '<br>$' +
             INVENTORY[i].price +
-            '<br>' +
+            '<br>In Stock: ' +
             INVENTORY[i].inStock +
-            '<button id="addToCart' +
+            '<br><button id="addToCart' +
             i +
             '" onclick="addToCart(' +
             i +
