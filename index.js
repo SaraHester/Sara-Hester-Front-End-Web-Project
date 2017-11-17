@@ -193,7 +193,7 @@ function addToCart(number) {
 }
 function removeFromCart(number) {
     INVENTORY[number].inStock += 1;
-    shoppingCart.splice(INVENTORY[number], 1);
+    shoppingCart.splice(shoppingCart.indexOf(INVENTORY[number]), 1);
     drawItems();
 }
 function hideSellForm() {
@@ -268,7 +268,10 @@ function drawItems() {
     html = '';
     for (i = 0; i < INVENTORY.length; i++) {
         addTo = '';
-        remove = '';
+        remove = 'disabled';
+        if (shoppingCart.includes(INVENTORY[i])) {
+            remove = '';
+        }
         if (INVENTORY[i].inStock === 0) {
             classes = 'photo soldout';
             addTo = 'disabled';
@@ -302,13 +305,20 @@ function drawItems() {
             i +
             '" onclick="removeFromCart(' +
             i +
-            ')">Remove from cart</button><button id="info' +
+            ')"' +
+            remove +
+            '>Remove from cart</button><button id="info' +
             i +
             '" onclick="seeInfo(' +
             i +
             ')">More info</button></div></p>';
     }
     $('#data').html(html);
+}
+function removeItem(number) {
+    INVENTORY[INVENTORY.indexOf(shoppingCart[number])].inStock += 1;
+    shoppingCart.splice(number, 1);
+    showCart();
 }
 function showCart() {
     $('#toggleSellForm').hide();
@@ -324,7 +334,9 @@ function showCart() {
             shoppingCart[i].price +
             '<br>In Stock: ' +
             shoppingCart[i].inStock +
-            '<br></p></div>';
+            '<br><button onclick="removeItem(' +
+            i +
+            ')">Remove</button></p></div>';
         total += parseFloat(shoppingCart[i].price);
     }
     $('#data').html(html + '<br>Total: ' + total);
