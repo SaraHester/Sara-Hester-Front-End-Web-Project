@@ -184,10 +184,29 @@ function enableButton() {
         $('#errors').html('');
     }
 }
-
+function itemInCart(item) {
+    for (i = 0; i < shoppingCart.length; i++) {
+        if (
+            shoppingCart[i].name === item.name &&
+            shoppingCart[i].price === item.price &&
+            shoppingCart[i].inStock === item.inStock &&
+            shoppingCart[i].description === item.description &&
+            shoppingCart[i].picUrl === item.picUrl &&
+            shoppingCart[i].seller === item.seller
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
 function addToCart(number) {
     INVENTORY[number].inStock -= 1;
-    shoppingCart.push(INVENTORY[number]);
+    if (itemInCart(INVENTORY[number])) {
+        shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity += 1;
+    } else {
+        INVENTORY[number].quantity = 1;
+        shoppingCart.push(INVENTORY[number]);
+    }
     console.log(shoppingCart);
 }
 function removeFromCart(number) {
@@ -373,6 +392,8 @@ function showCart() {
             shoppingCart[i].price +
             '<br>In Stock: ' +
             shoppingCart[i].inStock +
+            '<br>Quantity: ' +
+            shoppingCart[i].quantity +
             '<br><button onclick="removeItem(' +
             i +
             ')">Remove</button></p></div>';
