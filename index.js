@@ -211,7 +211,11 @@ function addToCart(number) {
 }
 function removeFromCart(number) {
     INVENTORY[number].inStock += 1;
-    shoppingCart.splice(shoppingCart.indexOf(INVENTORY[number]), 1);
+    if (shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity > 1) {
+        shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity -= 1;
+    } else {
+        shoppingCart.splice(shoppingCart.indexOf(INVENTORY[number]), 1);
+    }
 }
 function hideSellForm() {
     $('#toggleSellForm').html(
@@ -367,7 +371,11 @@ function drawItems() {
 }
 function removeItem(number) {
     INVENTORY[INVENTORY.indexOf(shoppingCart[number])].inStock += 1;
-    shoppingCart.splice(number, 1);
+    if (shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity > 1) {
+        shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity -= 1;
+    } else {
+        shoppingCart.splice(number, 1);
+    }
     showCart();
 }
 function showCart() {
