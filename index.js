@@ -200,11 +200,13 @@ function itemInCart(item) {
     return false;
 }
 function addToCart(number) {
-    INVENTORY[number].inStock -= 1;
+    INVENTORY[number].inStock -= parseInt($('#quantity' + number).val());
     if (itemInCart(INVENTORY[number])) {
-        shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity += 1;
+        shoppingCart[
+            shoppingCart.indexOf(INVENTORY[number])
+        ].quantity += parseInt($('#quantity' + number).val());
     } else {
-        INVENTORY[number].quantity = 1;
+        INVENTORY[number].quantity = parseInt($('#quantity' + number).val());
         shoppingCart.push(INVENTORY[number]);
     }
     console.log(shoppingCart);
@@ -349,13 +351,17 @@ function drawItems() {
             INVENTORY[i].price +
             '<br>In Stock: ' +
             INVENTORY[i].inStock +
-            '<br><button id="addToCart' +
+            '<br><input id="quantity' +
+            i +
+            '" type="number"  value="1" max="' +
+            INVENTORY[i].inStock +
+            '"><button id="addToCart' +
             i +
             '" onclick="addToCart(' +
             i +
             '); drawItems();" ' +
             addTo +
-            '>Add to Cart<button id="removeFromCart' +
+            '>Add to Cart</button><br><button id="removeFromCart' +
             i +
             '" onclick="removeFromCart(' +
             i +
