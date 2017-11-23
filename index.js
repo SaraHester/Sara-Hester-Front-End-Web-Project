@@ -377,8 +377,8 @@ function drawItems() {
 }
 function removeItem(number) {
     INVENTORY[INVENTORY.indexOf(shoppingCart[number])].inStock += 1;
-    if (shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity > 1) {
-        shoppingCart[shoppingCart.indexOf(INVENTORY[number])].quantity -= 1;
+    if (shoppingCart[number].quantity > 1) {
+        shoppingCart[number].quantity -= 1;
     } else {
         shoppingCart.splice(number, 1);
     }
