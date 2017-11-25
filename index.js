@@ -271,29 +271,29 @@ function toggleSellForm() {
 }
 function search(filter) {
     $('#search-by-name').removeAttr('disabled');
-    $('#search-by-sellet').removeAttr('disabled');
+    $('#search-by-seller').removeAttr('disabled');
     filteredList = [];
     keyword = $('#searchContent')
         .val()
         .toLowerCase();
-    console.log(keyword);
-    for (i = 0; i < INVENTORY.length; i++) {
-        inventoryName = INVENTORY[i][filter].toLowerCase();
-        if (inventoryName.indexOf(keyword) > -1) {
-            filteredList.push(INVENTORY[i]);
+    if (keyword != '') {
+        for (i = 0; i < INVENTORY.length; i++) {
+            inventoryName = INVENTORY[i][filter].toLowerCase();
+            if (inventoryName.indexOf(keyword) > -1) {
+                filteredList.push(INVENTORY[i]);
+            }
+        }
+        $('#searchBy').html(
+            '<hr>Search by: &emsp;&emsp;&emsp;<button onclick="drawItems(INVENTORY); $(\'#searchBy\').html(\'\');" ><i class="fa fa-times" aria-hidden="true"></i></button><br><button id="search-by-name" onclick="search(\'name\')">Name</button>' +
+                '<button id="search-by-seller" onclick="search(\'seller\')">Seller</button>'
+        );
+        $('#search-by-' + filter).attr('disabled', 'true');
+        if (filteredList != '') {
+            drawItems(filteredList);
+        } else {
+            $('#data').html('No items found');
         }
     }
-    $('#searchBy').html(
-        '<hr>Search by: <br><button id="search-by-name" onclick="search(\'name\')">Name</button>' +
-            '<button id="search-by-seller" onclick="search(\'seller\')">Seller</button>'
-    );
-    $('#search-by-' + filter).attr('disabled', 'true');
-    if (filteredList != '') {
-        drawItems(filteredList);
-    } else {
-        $('#data').html('No items found');
-    }
-    // $('#searchContent').val('');
 }
 
 function back() {
@@ -465,7 +465,11 @@ function sell() {
     hideSellForm();
     drawItems(INVENTORY);
 }
-
+$('#searchContent').on('keyup', function(e) {
+    if (e.keyCode == 13) {
+        search('name');
+    }
+});
 $('#itemName').on('input', function(event) {
     var name = event.currentTarget.value;
     console.log($('#itemName').val());
