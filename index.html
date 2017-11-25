@@ -19,7 +19,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><input type="text" id='searchContent'>
-                    <li> <button id='search' onclick='search()'>Search</button></li>
+                    <li> <button id='search' onclick="search('name')">Search</button></li>
                     <!-- <button id='toggleSearch' onclick='toggleSearch()'><i class="fa fa-search" aria-hidden="true"></i></a></li> -->
                     <li class="active"><a href="#">Home</a></li>
             </ul>
@@ -34,6 +34,7 @@
 
         </h1>
         <button onclick='toggleSellForm()' id='toggleSellForm'>Add item to sell <i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div id="searchBy"></div>
         <hr>
         <div id="data"></div>
         <p><input type='text' id="itemName" placeholder="Name" hidden></p>

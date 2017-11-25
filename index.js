@@ -266,22 +266,34 @@ function toggleSellForm() {
     } else if ($('#toggleSellForm').css('color') === 'rgb(255, 0, 0)') {
         hideSellForm();
 
-        drawItems();
+        drawItems(INVENTORY);
     }
 }
-function search() {
+function search(filter) {
+    $('#search-by-name').removeAttr('disabled');
+    $('#search-by-sellet').removeAttr('disabled');
     filteredList = [];
     keyword = $('#searchContent')
         .val()
         .toLowerCase();
     console.log(keyword);
     for (i = 0; i < INVENTORY.length; i++) {
-        inventoryName = INVENTORY[i].name.toLowerCase();
+        inventoryName = INVENTORY[i][filter].toLowerCase();
         if (inventoryName.indexOf(keyword) > -1) {
             filteredList.push(INVENTORY[i]);
         }
     }
-    drawItems(filteredList);
+    $('#searchBy').html(
+        '<hr>Search by: <br><button id="search-by-name" onclick="search(\'name\')">Name</button>' +
+            '<button id="search-by-seller" onclick="search(\'seller\')">Seller</button>'
+    );
+    $('#search-by-' + filter).attr('disabled', 'true');
+    if (filteredList != '') {
+        drawItems(filteredList);
+    } else {
+        $('#data').html('No items found');
+    }
+    // $('#searchContent').val('');
 }
 
 function back() {
