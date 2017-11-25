@@ -260,6 +260,34 @@ function showSellForm() {
     $('#addSellItem').removeAttr('hidden');
     $('#itemSeller').removeAttr('hidden');
 }
+function toggleSellForm() {
+    if ($('#toggleSellForm').css('color') === 'rgb(0, 0, 0)') {
+        showSellForm();
+    } else if ($('#toggleSellForm').css('color') === 'rgb(255, 0, 0)') {
+        hideSellForm();
+
+        drawItems();
+    }
+}
+function showSearch() {
+    $('#searchContent').removeAttr('hidden');
+    $('#search').removeAttr('hidden');
+    $('#toggleSearch').css('color', 'rgb(255, 0, 0)');
+    $('#toggleSearch').html('<i class="fa fa-minus" aria-hidden="true"></i>');
+}
+function hideSearch() {
+    $('#searchContent').attr('hidden', true);
+    $('#search').attr('hidden', true);
+    $('#toggleSearch').css('color', 'rgb(0, 0, 0)');
+    $('#toggleSearch').html('<i class="fa fa-search" aria-hidden="true"></i>');
+}
+function toggleSearch() {
+    if ($('#toggleSearch').css('color') === 'rgb(0, 0, 0)') {
+        showSearch();
+    } else if ($('#toggleSearch').css('color') === 'rgb(255, 0, 0)') {
+        hideSearch();
+    }
+}
 function back() {
     drawItems();
     $('#toggleSellForm').show();
@@ -415,15 +443,7 @@ function showCart() {
     }
     $('#data').html(html + '<br>Total: ' + total);
 }
-function toggleSellForm() {
-    if ($('#toggleSellForm').css('color') === 'rgb(0, 0, 0)') {
-        showSellForm();
-    } else if ($('#toggleSellForm').css('color') === 'rgb(255, 0, 0)') {
-        hideSellForm();
 
-        drawItems();
-    }
-}
 function sell() {
     item = {
         name: $('#itemName').val(),

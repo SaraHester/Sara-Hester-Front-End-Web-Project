@@ -18,7 +18,7 @@
                 <a class="navbar-brand" href="#">Anime World   <i class="fa fa-globe" aria-hidden="true"></i></a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href='#'>Search</a></li>
+                <li><button id='toggleSearch' onclick='toggleSearch()'><i class="fa fa-search" aria-hidden="true"></i></a></li>
                 <li class="active"><a href="#">Home</a></li>
             </ul>
             <ul class='nav navbar-nav navbar-right'>
@@ -26,6 +26,8 @@
             </ul>
         </div>
     </nav>
+    <input type="text" id='searchContent' hidden>
+    <button id='search' onclick='search()' hidden>Search</button>
     <center>
         <h1>Welcome
 
