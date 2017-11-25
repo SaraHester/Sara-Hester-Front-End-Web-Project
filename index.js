@@ -282,14 +282,36 @@ function hideSearch() {
     $('#toggleSearch').html('<i class="fa fa-search" aria-hidden="true"></i>');
 }
 function toggleSearch() {
-    if ($('#toggleSearch').css('color') === 'rgb(0, 0, 0)') {
+    if (
+        $('#toggleSearch').html() ===
+        '<i class="fa fa-search" aria-hidden="true"></i>'
+    ) {
         showSearch();
-    } else if ($('#toggleSearch').css('color') === 'rgb(255, 0, 0)') {
+    } else if (
+        $('#toggleSearch').html() ===
+        '<i class="fa fa-minus" aria-hidden="true"></i>'
+    ) {
         hideSearch();
+        drawItems(INVENTORY);
     }
 }
+function search() {
+    filteredList = [];
+    keyword = $('#searchContent')
+        .val()
+        .toLowerCase();
+    console.log(keyword);
+    for (i = 0; i < INVENTORY.length; i++) {
+        inventoryName = INVENTORY[i].name.toLowerCase();
+        if (inventoryName.indexOf(keyword) > -1) {
+            filteredList.push(INVENTORY[i]);
+        }
+    }
+    drawItems(filteredList);
+}
+
 function back() {
-    drawItems();
+    drawItems(INVENTORY);
     $('#toggleSellForm').show();
 }
 function seeInfo(number) {
@@ -344,7 +366,7 @@ function seeInfo(number) {
             '>Remove from cart</button></div></div>'
     );
 }
-function drawItems() {
+function drawItems(INVENTORY) {
     $('#cart').html(
         '<i class="fa fa-shopping-cart" aria-hidden="true">' +
             shoppingCart.length
@@ -387,13 +409,13 @@ function drawItems() {
             i +
             '" onclick="addToCart(' +
             i +
-            '); drawItems();" ' +
+            '); drawItems(INVENTORY);" ' +
             addTo +
             '>Add to Cart</button><br><button id="removeFromCart' +
             i +
             '" onclick="removeFromCart(' +
             i +
-            '); drawItems();"' +
+            '); drawItems(INVENTORY);"' +
             remove +
             '>Remove from cart</button><button id="info' +
             i +
@@ -455,7 +477,7 @@ function sell() {
     };
     INVENTORY.push(item);
     hideSellForm();
-    drawItems();
+    drawItems(INVENTORY);
 }
 
 $('#itemName').on('input', function(event) {
@@ -541,7 +563,7 @@ $('#itemQuantity').on('input', function(event) {
 
 function main() {
     // attachHandlers();
-    drawItems();
+    drawItems(INVENTORY);
 }
 
 $(main);
