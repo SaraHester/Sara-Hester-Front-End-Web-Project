@@ -269,32 +269,6 @@ function toggleSellForm() {
         drawItems();
     }
 }
-function showSearch() {
-    $('#searchContent').removeAttr('hidden');
-    $('#search').removeAttr('hidden');
-    $('#toggleSearch').css('color', 'rgb(255, 0, 0)');
-    $('#toggleSearch').html('<i class="fa fa-minus" aria-hidden="true"></i>');
-}
-function hideSearch() {
-    $('#searchContent').attr('hidden', true);
-    $('#search').attr('hidden', true);
-    $('#toggleSearch').css('color', 'rgb(0, 0, 0)');
-    $('#toggleSearch').html('<i class="fa fa-search" aria-hidden="true"></i>');
-}
-function toggleSearch() {
-    if (
-        $('#toggleSearch').html() ===
-        '<i class="fa fa-search" aria-hidden="true"></i>'
-    ) {
-        showSearch();
-    } else if (
-        $('#toggleSearch').html() ===
-        '<i class="fa fa-minus" aria-hidden="true"></i>'
-    ) {
-        hideSearch();
-        drawItems(INVENTORY);
-    }
-}
 function search() {
     filteredList = [];
     keyword = $('#searchContent')
