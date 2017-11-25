@@ -378,7 +378,9 @@ function drawItems(INVENTORY) {
             html += '</div><div class="row">';
         }
         html +=
-            '<div class="col-sm-4"><div class="photo' +
+            '<div class="col-sm-4"><div  onclick="seeInfo(' +
+            i +
+            ')"class="photo' +
             classes +
             INVENTORY[i].picUrl +
             '"></div><p>' +
@@ -387,7 +389,7 @@ function drawItems(INVENTORY) {
             INVENTORY[i].price +
             '<br>In Stock: ' +
             INVENTORY[i].inStock +
-            '<br><input id="quantity' +
+            '<br><input class="quantity" id="quantity' +
             i +
             '" type="number"  value="1" max="' +
             INVENTORY[i].inStock +
@@ -397,13 +399,13 @@ function drawItems(INVENTORY) {
             i +
             '); drawItems(INVENTORY);" ' +
             addTo +
-            '>Add to Cart</button><br><button id="removeFromCart' +
+            '><i class="fa fa-cart-plus" aria-hidden="true"></i></button><br><button id="removeFromCart' +
             i +
             '" onclick="removeFromCart(' +
             i +
             '); drawItems(INVENTORY);"' +
             remove +
-            '>Remove from cart</button><button id="info' +
+            '><i class="fa fa-trash" aria-hidden="true"></i></button><br><button id="info' +
             i +
             '" onclick="seeInfo(' +
             i +

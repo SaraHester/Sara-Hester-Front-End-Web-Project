@@ -46,3 +46,21 @@ button[disabled] {
 p {
     display: inline;
 }
+#search,
+#cart {
+    margin-top: 5px;
+    height: 40px;
+}
+#searchContent {
+    margin-top: 10px;
+}
+.quantity {
+    width: 50px;
+}
+.col-sm-4 {
+    padding: 20px;
+    border-style: solid;
+    border: 5px;
+    border-radius: 5px;
+    border-color: black;
+}
