@@ -200,6 +200,7 @@ function itemInCart(item) {
     return false;
 }
 function addToCart(number) {
+    console.log(INVENTORY[number]);
     INVENTORY[number].inStock -= parseInt($('#quantity' + number).val());
     if (itemInCart(INVENTORY[number])) {
         shoppingCart[
@@ -333,7 +334,11 @@ function seeInfo(number) {
             INVENTORY[number].inStock +
             '<br>Description : ' +
             INVENTORY[number].description +
-            '</p><br><button id="addToCart' +
+            '</p><br><input class="quantity" id="quantity' +
+            number +
+            '" type="number"  value="1" max="' +
+            INVENTORY[number].inStock +
+            '"><button id="addToCart' +
             number +
             '" onclick="addToCart(' +
             number +
@@ -341,7 +346,7 @@ function seeInfo(number) {
             number +
             ');" ' +
             addTo +
-            '>Add to Cart<button id="removeFromCart' +
+            '><i class="fa fa-cart-plus" aria-hidden="true"></i></button><button id="removeFromCart' +
             number +
             '" onclick="removeFromCart(' +
             number +
@@ -349,7 +354,7 @@ function seeInfo(number) {
             number +
             ');"' +
             remove +
-            '>Remove from cart</button></div></div>'
+            '><i class="fa fa-trash" aria-hidden="true"></i></button></div></div>'
     );
 }
 function drawItems(INVENTORY) {
