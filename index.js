@@ -248,6 +248,7 @@ function hideSellForm() {
         .val('');
 }
 function showSellForm() {
+    $('#searchBy').html('');
     $('#toggleSellForm').html(
         'Cancel <i class="fa fa-minus" aria-hidden="true"></i>'
     );
@@ -429,6 +430,7 @@ function removeItem(number) {
     showCart();
 }
 function showCart() {
+    $('#searchBy').html('');
     $('#toggleSellForm').hide();
     total = 0;
     html = '<button onclick="back()">Back</button>';
