@@ -302,6 +302,7 @@ function back() {
     $('#toggleSellForm').show();
 }
 function seeInfo(number) {
+    $('#searchBy').html('');
     $('#cart').html(
         '<i class="fa fa-shopping-cart" aria-hidden="true">' +
             shoppingCart.length
