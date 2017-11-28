@@ -165,7 +165,6 @@ validations = {
     quantity: false
 };
 function enableButton() {
-    console.log(errors.length);
     if (
         validations.name === true &&
         validations.price === true &&
@@ -200,7 +199,6 @@ function itemInCart(item) {
     return false;
 }
 function addToCart(number) {
-    console.log(INVENTORY[number]);
     INVENTORY[number].inStock -= parseInt($('#quantity' + number).val());
     if (itemInCart(INVENTORY[number])) {
         shoppingCart[
@@ -210,7 +208,7 @@ function addToCart(number) {
         INVENTORY[number].quantity = parseInt($('#quantity' + number).val());
         shoppingCart.push(INVENTORY[number]);
     }
-    console.log(shoppingCart);
+    // console.log(shoppingCart);
 }
 function removeFromCart(number) {
     INVENTORY[number].inStock += 1;
@@ -320,7 +318,6 @@ function seeInfo(number) {
     } else {
         classes = '"><center><img src="';
     }
-    console.log('seeInfo(' + number + ') has been clicked');
     $('#toggleSellForm').hide();
     $('#data').html(
         '<div class="row"><button onclick="back()">Back</button></div><p><div class=" row bigphoto' +
@@ -430,6 +427,7 @@ function removeItem(number) {
     showCart();
 }
 function showCart() {
+    // console.log('hey');
     $('#searchBy').html('');
     $('#toggleSellForm').hide();
     total = 0;
@@ -457,9 +455,9 @@ function showCart() {
             '<br><button onclick="removeItem(' +
             i +
             ')">Remove</button></p></div>';
-        total += parseFloat(shoppingCart[i].price);
+        total += parseFloat(shoppingCart[i].price) * shoppingCart[i].quantity;
     }
-    $('#data').html(html + '<br>Total: ' + total);
+    $('#data').append(html + '<hr>Total: ' + total);
 }
 
 function sell() {
@@ -482,7 +480,6 @@ $('#searchContent').on('keyup', function(e) {
 });
 $('#itemName').on('input', function(event) {
     var name = event.currentTarget.value;
-    console.log($('#itemName').val());
     if (name === '') {
         errors.push(' Name is blank');
         validations.name = false;
@@ -562,8 +559,8 @@ $('#itemQuantity').on('input', function(event) {
 });
 
 function main() {
+    console.log('hey');
     // attachHandlers();
     drawItems(INVENTORY);
 }
-
 $(main);
