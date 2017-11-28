@@ -428,6 +428,7 @@ function removeItem(number) {
 }
 function showCart() {
     // console.log('hey');
+
     $('#searchBy').html('');
     $('#toggleSellForm').hide();
     total = 0;
@@ -457,7 +458,7 @@ function showCart() {
             ')">Remove</button></p></div>';
         total += parseFloat(shoppingCart[i].price) * shoppingCart[i].quantity;
     }
-    $('#data').append(html + '<hr>Total: ' + total);
+    $('#data').html(html + '<hr>Total: ' + total);
 }
 
 function sell() {
